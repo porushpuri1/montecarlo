@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import yfinance as yf
 import streamlit as st
 import datetime 
@@ -72,9 +74,21 @@ for x in range(num_simulations):
     
     simulation_df[x] = price_series
 
-st.header(f"Simulations....\n {company_name}")
+summary = simulation_df.describe()
+
+st.header(f"Monte Carlo Simulations....\n {company_name}")
 st.line_chart(simulation_df)
-print(simulation_df)
+
+#st.dataframe(simulation_df)
+#st.write(simulation_df.describe())
+
+mean_monte = summary.agg('mean')
+st.header(f"Line of Means....\n {company_name}")
+st.line_chart(mean_monte)
+
+model_inter = mean_monte.describe()
+st.header(f"Monte Carlo Interpretation..\n {company_name}")
+st.dataframe(model_inter)
 
 
 
