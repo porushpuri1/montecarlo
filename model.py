@@ -74,6 +74,7 @@ for x in range(num_simulations):
 
 st.header(f"Simulations....\n {company_name}")
 st.line_chart(simulation_df)
+print(simulation_df)
 
 
 
